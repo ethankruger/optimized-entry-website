@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Download • Optimized Entry</title>
+</head>
+<body class="bg-hero">
+  <div id="app-nav"></div>
+
+  <main class="section min-h-[70vh] flex items-center justify-center">
+    <div class="w-full max-w-xl">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold">Secure Download</h1>
+        <p class="mt-2 text-slate-600">Enter your access key. Demo key: <code>1234</code>.</p>
+      </div>
+
+      <div id="gate-wrap" class="card">
+        <form id="gate-form" class="grid gap-4">
+          <label class="text-sm font-medium" for="gate-key">Access key</label>
+          <input id="gate-key" type="password" placeholder="••••"
+                 class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
+          <button class="btn-primary justify-center">Unlock</button>
+          <p id="gate-error" class="text-sm text-red-600"></p>
+        </form>
+      </div>
+
+      <section id="dl-content" class="hidden mt-6">
+        <div class="card">
+          <div class="flex items-center gap-3">
+            <img src="/img/logo-mark.png" class="h-8" alt="">
+            <h2 class="text-xl font-semibold">Optimized Entry Downloads</h2>
+          </div>
+          <p class="mt-2 text-slate-600">Work in progress. Replace links with real binaries.</p>
+          <div class="mt-6 grid sm:grid-cols-3 gap-3">
+            <a href="#" class="btn-secondary justify-center">Windows (.exe)</a>
+            <a href="#" class="btn-secondary justify-center">macOS (.dmg)</a>
+            <a href="#" class="btn-secondary justify-center">Linux (.AppImage)</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/gate.js"></script>
+</body>
+</html>
