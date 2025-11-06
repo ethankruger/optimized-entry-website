@@ -4,44 +4,29 @@
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Download • Optimized Entry</title>
 </head>
-<body class="bg-hero">
+<body>
   <div id="app-nav"></div>
-
-  <main class="section min-h-[70vh] flex items-center justify-center">
-    <div class="w-full max-w-xl">
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold">Secure Download</h1>
-        <p class="mt-2 text-slate-600">Enter your access key. Demo key: <code>1234</code>.</p>
+  <main class="section max-w-6xl mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-2">Secure download</h1>
+    <p class="text-slate-600 mb-4">Enter access key to unlock downloads. Demo key: <code>1234</code>.</p>
+    <form id="gate" class="card grid gap-3 max-w-md">
+      <input id="key" class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30" placeholder="Access key">
+      <button class="btn-primary justify-center">Unlock</button>
+    </form>
+    <section id="dl" class="card mt-6 hidden">
+      <div class="flex flex-wrap gap-3">
+        <a href="#" class="btn-secondary">Windows (.exe)</a>
+        <a href="#" class="btn-secondary">macOS (.dmg)</a>
+        <a href="#" class="btn-secondary">Linux (.AppImage)</a>
       </div>
-
-      <div id="gate-wrap" class="card">
-        <form id="gate-form" class="grid gap-4">
-          <label class="text-sm font-medium" for="gate-key">Access key</label>
-          <input id="gate-key" type="password" placeholder="••••"
-                 class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
-          <button class="btn-primary justify-center">Unlock</button>
-          <p id="gate-error" class="text-sm text-red-600"></p>
-        </form>
-      </div>
-
-      <section id="dl-content" class="hidden mt-6">
-        <div class="card">
-          <div class="flex items-center gap-3">
-            <img src="/img/logo-mark.png" class="h-8" alt="">
-            <h2 class="text-xl font-semibold">Optimized Entry Downloads</h2>
-          </div>
-          <p class="mt-2 text-slate-600">Work in progress. Replace links with real binaries.</p>
-          <div class="mt-6 grid sm:grid-cols-3 gap-3">
-            <a href="#" class="btn-secondary justify-center">Windows (.exe)</a>
-            <a href="#" class="btn-secondary justify-center">macOS (.dmg)</a>
-            <a href="#" class="btn-secondary justify-center">Linux (.AppImage)</a>
-          </div>
-        </div>
-      </section>
-    </div>
+    </section>
   </main>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const f=document.getElementById('gate'); const dl=document.getElementById('dl'); const k=document.getElementById('key');
+      f.addEventListener('submit',(e)=>{e.preventDefault(); if((k.value||'').trim()==='1234'){dl.classList.remove('hidden')}else{alert('Invalid key')}});
+    });
+  </script>
   <script type="module" src="/src/main.js"></script>
-  <script type="module" src="/src/gate.js"></script>
 </body>
 </html>
