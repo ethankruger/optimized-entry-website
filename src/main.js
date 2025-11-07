@@ -11,7 +11,7 @@ function mountNav(){
     </a>
     <nav class="ml-auto hidden md:flex items-center gap-6 text-slate-700">
       <a href="/index.html" class="hover:text-brand-orange">Home</a>
-      <a href="/index.html#what-we-do" class="hover:text-brand-orange">What We Do</a>
+      <a href="/about-us.html" class="hover:text-brand-orange">About Us</a>
       <a href="/testimonials.html" class="hover:text-brand-orange">Testimonials</a>
       <a href="/contact.html" class="hover:text-brand-orange">Contact Us</a>
       <a href="/download.html" class="btn-primary">Download</a>
@@ -21,7 +21,7 @@ function mountNav(){
   <div id="mobile" class="md:hidden hidden border-t">
     <div class="px-4 py-3 flex flex-col gap-3">
       <a href="/index.html">Home</a>
-      <a href="/index.html#what-we-do">What We Do</a>
+      <a href="/about-us.html">About Us</a>
       <a href="/testimonials.html">Testimonials</a>
       <a href="/contact.html">Contact Us</a>
       <a href="/download.html" class="btn-primary justify-center">Download</a>

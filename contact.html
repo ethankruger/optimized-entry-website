@@ -1,42 +1,53 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact us — Optimized Entry</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <nav class="nav">
-      <a href="/">Home</a> · <a href="/testimonials.html">Testimonials</a> · <a href="/contact.html">Contact</a> · <a href="/download.html">Download</a>
-    </nav>
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Contact • Optimized Entry</title>
+</head>
+<body>
+  <div id="app-nav"></div>
 
-    <main class="page">
-      <h1>Contact us</h1>
+  <main class="section max-w-6xl mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-2">
+      Contact <span class="text-brand-orange">Optimized Entry</span>
+    </h1>
+    <p class="text-slate-600 mb-4">
+      Tell us about your business and what you’d like to improve — we’ll follow up shortly.
+    </p>
 
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" class="card form">
-        <input type="hidden" name="form-name" value="contact" />
-        <p style="display:none">
-          <label>Don’t fill this out: <input name="bot-field" /></label>
-        </p>
+    <!-- Netlify form -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+          action="/thanks.html"
+          class="card grid gap-3 md:grid-cols-2 max-w-2xl">
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display:none">
+        <label>Don’t fill this out: <input name="bot-field" /></label>
+      </p>
 
-        <label class="input">
-          <span>Name</span>
-          <input type="text" name="name" required />
-        </label>
+      <label class="md:col-span-1">
+        <span class="block text-sm text-slate-600 mb-1">Name</span>
+        <input type="text" name="name" required
+               class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30" />
+      </label>
 
-        <label class="input">
-          <span>Email</span>
-          <input type="email" name="email" required />
-        </label>
+      <label class="md:col-span-1">
+        <span class="block text-sm text-slate-600 mb-1">Email</span>
+        <input type="email" name="email" required
+               class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30" />
+      </label>
 
-        <label class="input">
-          <span>Message</span>
-          <textarea name="message" rows="6" required></textarea>
-        </label>
+      <label class="md:col-span-2">
+        <span class="block text-sm text-slate-600 mb-1">Message</span>
+        <textarea name="message" rows="6" required
+                  class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30"></textarea>
+      </label>
 
-        <button type="submit" class="btn primary">Send</button>
-      </form>
-    </main>
-  </body>
+      <div class="md:col-span-2">
+        <button type="submit" class="btn-primary justify-center">Send</button>
+      </div>
+    </form>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
