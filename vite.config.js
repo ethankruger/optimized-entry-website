@@ -10,6 +10,7 @@ export default defineConfig({
               testimonials: resolve(__dirname, "testimonials.html"),
               download:  resolve(__dirname, "download.html"),
               whoWeAre:  resolve(__dirname, "about-us.html"),
+              getADemo:  resolve(__dirname, "get-a-demo.html"),
           },
       },
   },
