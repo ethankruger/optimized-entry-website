@@ -112,34 +112,73 @@
       </div>
     </section>
 
-    <!-- GET A DEMO: functional lead form -->
+    <!-- GET A DEMO: Netlify form -->
     <section id="get-a-demo" class="section my-24">
       <div class="card max-w-3xl mx-auto">
         <h2 class="text-2xl font-bold">Get a demo</h2>
         <p class="text-slate-600 mt-1">Tell us what you need. We'll follow up with next steps.</p>
-        <form name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" id="lead-form" class="grid md:grid-cols-2 gap-4 mt-6">
+        
+        <!-- Netlify form -->
+        <form name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" 
+              action="/thanks.html" class="grid md:grid-cols-2 gap-4 mt-6">
           <input type="hidden" name="form-name" value="demo-request" />
           <p style="display:none">
             <label>Don't fill this out: <input name="bot-field" /></label>
           </p>
-          <input name="name"  type="text"  placeholder="Your name"   required class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
-          <input name="email" type="email" placeholder="Email"        required class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
-          <input name="phone" type="tel"   placeholder="Phone"                 class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
-          <input name="biz"   type="text"  placeholder="Business name"         class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
-          <div class="md:col-span-2 grid sm:grid-cols-3 gap-3">
-            <label class="border rounded-xl px-4 py-3 flex items-center gap-2"><input type="checkbox" name="need" value="AI Reception"> AI Reception</label>
-            <label class="border rounded-xl px-4 py-3 flex items-center gap-2"><input type="checkbox" name="need" value="Booking & Calendar"> Booking & Calendar</label>
-            <label class="border rounded-xl px-4 py-3 flex items-center gap-2"><input type="checkbox" name="need" value="Lead Capture & CRM"> Lead Capture & CRM</label>
+          
+          <label class="md:col-span-1">
+            <span class="block text-sm text-slate-600 mb-1">Your name</span>
+            <input name="name" type="text" placeholder="Your name" required 
+                   class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30">
+          </label>
+          
+          <label class="md:col-span-1">
+            <span class="block text-sm text-slate-600 mb-1">Email</span>
+            <input name="email" type="email" placeholder="Email" required 
+                   class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30">
+          </label>
+          
+          <label class="md:col-span-1">
+            <span class="block text-sm text-slate-600 mb-1">Phone</span>
+            <input name="phone" type="tel" placeholder="Phone" 
+                   class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30">
+          </label>
+          
+          <label class="md:col-span-1">
+            <span class="block text-sm text-slate-600 mb-1">Business name</span>
+            <input name="business" type="text" placeholder="Business name" 
+                   class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30">
+          </label>
+          
+          <div class="md:col-span-2">
+            <span class="block text-sm text-slate-600 mb-3">What services are you interested in?</span>
+            <div class="grid sm:grid-cols-3 gap-3">
+              <label class="border rounded-xl px-4 py-3 flex items-center gap-2">
+                <input type="checkbox" name="services" value="AI Reception"> AI Reception
+              </label>
+              <label class="border rounded-xl px-4 py-3 flex items-center gap-2">
+                <input type="checkbox" name="services" value="Booking & Calendar"> Booking & Calendar
+              </label>
+              <label class="border rounded-xl px-4 py-3 flex items-center gap-2">
+                <input type="checkbox" name="services" value="Lead Capture & CRM"> Lead Capture & CRM
+              </label>
+            </div>
           </div>
-          <textarea name="notes" rows="4" placeholder="Notes or goals" class="md:col-span-2 border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30"></textarea>
-          <button type="submit" class="btn-primary justify-center md:col-span-2">Send request</button>
-          <p id="lead-msg" class="md:col-span-2 text-sm text-slate-600"></p>
+          
+          <label class="md:col-span-2">
+            <span class="block text-sm text-slate-600 mb-1">Notes or goals</span>
+            <textarea name="notes" rows="4" placeholder="Notes or goals" 
+                      class="border rounded-xl px-4 py-3 w-full outline-none focus:ring focus:ring-green-400/30"></textarea>
+          </label>
+          
+          <div class="md:col-span-2">
+            <button type="submit" class="btn-primary justify-center w-full">Send request</button>
+          </div>
         </form>
       </div>
     </section>
   </main>
 
   <script type="module" src="/src/main.js"></script>
-  <script type="module" src="/src/lead.js"></script>
 </body>
 </html>
