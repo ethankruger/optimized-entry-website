@@ -26,27 +26,95 @@
         </p>
         
         <div class="bg-gradient-to-br from-orange-50 to-green-50 rounded-2xl p-8 mb-6">
-          <!-- Audio Player -->
+          <!-- Custom Audio Player -->
           <div class="bg-white rounded-xl p-8 shadow-sm">
-            <div class="flex items-center justify-center mb-4">
-              <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center">
-                <svg class="w-8 h-8 text-brand-orange" fill="currentColor" viewBox="0 0 24 24">
+            <h3 class="text-lg font-semibold mb-6 text-center">Sample AI Reception Call</h3>
+            
+            <!-- Hidden native audio element -->
+            <audio id="demo-audio" preload="metadata">
+              <source src="/RetellAiDemo.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            
+            <!-- Custom Play Button -->
+            <div class="flex justify-center">
+              <button id="play-btn" class="group relative w-20 h-20 bg-gradient-to-br from-brand-orange to-orange-400 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-200">
+                <!-- Play Icon -->
+                <svg id="play-icon" class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
+                <!-- Pause Icon (hidden initially) -->
+                <svg id="pause-icon" class="hidden w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="mt-6 max-w-md mx-auto">
+              <div class="flex items-center gap-2 text-sm text-slate-500 mb-2">
+                <span id="current-time">0:00</span>
+                <div class="flex-1 bg-slate-200 rounded-full h-2 relative overflow-hidden">
+                  <div id="progress-bar" class="bg-gradient-to-r from-brand-orange to-orange-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                  <input id="progress-slider" type="range" min="0" max="100" value="0" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                </div>
+                <span id="duration">0:00</span>
               </div>
             </div>
-            <h3 class="text-lg font-semibold mb-4">Sample AI Reception Call</h3>
-            <div class="max-w-md mx-auto">
-              <audio controls class="w-full mb-4" preload="metadata">
-                <source src="/RetellAiDemo.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
-            </div>
-            <p class="text-slate-500 text-sm">
-              Professional, Natural, Effective • Hear how our AI handles real customer calls
-            </p>
           </div>
         </div>
+        
+        <script>
+          // Custom audio player functionality
+          const audio = document.getElementById('demo-audio');
+          const playBtn = document.getElementById('play-btn');
+          const playIcon = document.getElementById('play-icon');
+          const pauseIcon = document.getElementById('pause-icon');
+          const progressBar = document.getElementById('progress-bar');
+          const progressSlider = document.getElementById('progress-slider');
+          const currentTimeEl = document.getElementById('current-time');
+          const durationEl = document.getElementById('duration');
+          
+          function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+          }
+          
+          playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+              audio.play();
+            } else {
+              audio.pause();
+            }
+          });
+          
+          audio.addEventListener('play', () => {
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+          });
+          
+          audio.addEventListener('pause', () => {
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+          });
+          
+          audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+          });
+          
+          audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+            progressSlider.value = progress;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+          });
+          
+          progressSlider.addEventListener('input', () => {
+            const time = (progressSlider.value / 100) * audio.duration;
+            audio.currentTime = time;
+          });
+        </script>
       </div>
     </section>
 
