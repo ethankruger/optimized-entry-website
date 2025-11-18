@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Get a Demo • Optimized Entry</title>
+</head>
+<body>
+  <div id="app-nav"></div>
+
+  <main class="section max-w-7xl mx-auto mt-10">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl font-bold mb-4">
+        Experience <span class="text-brand-orange">Optimized Entry</span> in Action
+      </h1>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+        Hear what our AI agent sounds like and see how we can transform your business communications.
+      </p>
+    </div>
+
+    <!-- Audio Demo Section -->
+    <section class="mb-16">
+      <div class="card max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">Hear What Our AI Agent Sounds Like</h2>
+        <p class="text-slate-600 mb-6">
+          Listen to a sample conversation showing how our AI receptionist handles incoming calls professionally and efficiently.
+        </p>
+        
+        <div class="bg-gradient-to-br from-orange-50 to-green-50 rounded-2xl p-8 mb-6">
+          <!-- Audio Player -->
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center">
+                <svg class="w-8 h-8 text-brand-orange" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold mb-4">Sample AI Reception Call</h3>
+            <div class="max-w-md mx-auto">
+              <audio controls class="w-full mb-4" preload="metadata">
+                <source src="/RetellAiDemo.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <p class="text-slate-500 text-sm">
+              Professional, Natural, Effective • Hear how our AI handles real customer calls
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET A DEMO: functional lead form -->
+    <section id="get-a-demo" class="section my-24">
+      <div class="card max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold">Get a demo</h2>
+        <p class="text-slate-600 mt-1">Tell us what you need. We'll follow up with next steps.</p>
+        <form id="lead-form" class="grid md:grid-cols-2 gap-4 mt-6">
+          <input name="name"  type="text"  placeholder="Your name"   required class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
+          <input name="email" type="email" placeholder="Email"        required class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
+          <input name="phone" type="tel"   placeholder="Phone"                 class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
+          <input name="biz"   type="text"  placeholder="Business name"         class="border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30">
+          <div class="md:col-span-2 grid sm:grid-cols-3 gap-3">
+            <label class="border rounded-xl px-4 py-3 flex items-center gap-2"><input type="checkbox" name="need" value="AI Reception"> AI Reception</label>
+            <label class="border rounded-xl px-4 py-3 flex items-center gap-2"><input type="checkbox" name="need" value="Booking & Calendar"> Booking & Calendar</label>
+            <label class="border rounded-xl px-4 py-3 flex items-center gap-2"><input type="checkbox" name="need" value="Lead Capture & CRM"> Lead Capture & CRM</label>
+          </div>
+          <textarea name="notes" rows="4" placeholder="Notes or goals" class="md:col-span-2 border rounded-xl px-4 py-3 outline-none focus:ring focus:ring-green-400/30"></textarea>
+          <button class="btn-primary justify-center md:col-span-2">Send request</button>
+          <p id="lead-msg" class="md:col-span-2 text-sm text-slate-600"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/lead.js"></script>
+</body>
+</html>
