@@ -17,7 +17,7 @@
 
     <!-- Netlify form -->
     <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"
-          action="/thanks.html"
+          action="/contact.html?success=true"
           class="card grid gap-3 md:grid-cols-2 max-w-2xl">
       <input type="hidden" name="form-name" value="contact" />
       <p style="display:none">
@@ -48,6 +48,32 @@
     </form>
   </main>
 
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Thanks — we received your message!</h3>
+      <p class="text-slate-600 mb-6">We'll reply shortly.</p>
+      <button onclick="closeModal()" class="btn-primary">Continue</button>
+    </div>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
+  <script>
+    function closeModal() {
+      document.getElementById('success-modal').classList.add('hidden');
+      document.getElementById('success-modal').classList.remove('flex');
+    }
+    
+    // Show modal on successful form submission
+    if (window.location.search.includes('success')) {
+      document.getElementById('success-modal').classList.remove('hidden');
+      document.getElementById('success-modal').classList.add('flex');
+    }
+  </script>
 </body>
 </html>
