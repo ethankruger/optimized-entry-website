@@ -33,7 +33,7 @@
             
             <!-- Custom Play Button -->
             <div class="flex justify-center mb-8">
-              <button id="play-btn" class="relative w-20 h-20 bg-brand-orange rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-200 flex items-center justify-center">
+              <button id="play-btn" class="relative w-20 h-20 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-200 flex items-center justify-center" style="background-color: #f27a20;">
                 <!-- Play Icon -->
                 <svg id="play-icon" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
@@ -50,7 +50,7 @@
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <span id="current-time">0:00</span>
                 <div class="flex-1 bg-slate-200 rounded-full h-2 relative overflow-hidden">
-                  <div id="progress-bar" class="bg-brand-orange h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                  <div id="progress-bar" class="h-full rounded-full transition-all duration-300" style="width: 0%; background-color: #f27a20;"></div>
                   <input id="progress-slider" type="range" min="0" max="100" value="0" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                 </div>
                 <span id="duration">0:00</span>
