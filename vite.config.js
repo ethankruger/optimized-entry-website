@@ -11,6 +11,8 @@ export default defineConfig({
               download:  resolve(__dirname, "download.html"),
               whoWeAre:  resolve(__dirname, "about-us.html"),
               getADemo:  resolve(__dirname, "get-a-demo.html"),
+              pricing:    resolve(__dirname, "pricing.html"),
+              pricingRequest: resolve(__dirname, "pricing-request.html"),
           },
       },
   },
