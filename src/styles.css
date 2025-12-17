@@ -31,22 +31,23 @@
 /* Components */
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white
-           transition-all duration-200 active:scale-95 shadow-md shadow-green-500/20
-           hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-400/30;
+      @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white
+        transition-all duration-200 active:scale-95 shadow-md shadow-green-500/20
+        hover:-translate-y-0.5 hover:shadow-lg focus-visible:-translate-y-0.5
+        active:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-400/30;
     /* Subtle brand gradient for depth */
     background-image: linear-gradient(135deg, #30b357 0%, #2aa74f 100%);
   }
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold
-           transition-all duration-200 active:scale-95 bg-white text-slate-900 border
-           hover:bg-slate-50 hover:-translate-y-0.5 shadow-sm hover:shadow-md
-           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-300;
+      @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold
+        transition-all duration-200 active:scale-95 bg-white text-slate-900 border
+        hover:bg-slate-50 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 active:-translate-y-0.5
+        shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-300;
   }
   .chip     { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border bg-white/70 backdrop-blur }
 
   /* Tasteful card elevation with hover lift */
-  .card     { @apply rounded-2xl p-6 bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl }
+  .card     { @apply rounded-2xl p-6 bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl active:-translate-y-0.5 }
 
   /* Re-introduce the glass panel used on feature tiles */
   .glass    { @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm }
