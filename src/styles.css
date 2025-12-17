@@ -4,6 +4,12 @@
 @layer base {
   html { scroll-behavior: smooth }
   body { @apply text-slate-900 bg-slate-50 }
+
+  /* Subtle selection color aligned with brand */
+  ::selection {
+    background: rgba(48, 179, 87, 0.18);
+    color: #0f172a;
+  }
 }
 
 /* Utilities */
@@ -17,23 +23,38 @@
   /* brand helpers */
   .text-brand-orange { color:#f27a20; }
   .bg-brand-green   { background-color:#30b357; }
+
+  /* Helpful tiny utility for tasteful hover lift */
+  .hover-lift { @apply transition-transform duration-200 hover:-translate-y-0.5 }
 }
 
 /* Components */
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold
-           transition-transform duration-150 active:scale-95 text-white hover:opacity-90;
-    background-color:#30b357;
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white
+           transition-all duration-200 active:scale-95 shadow-md shadow-green-500/20
+           hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-400/30;
+    /* Subtle brand gradient for depth */
+    background-image: linear-gradient(135deg, #30b357 0%, #2aa74f 100%);
   }
   .btn-secondary {
     @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold
-           transition-transform duration-150 active:scale-95 bg-white text-slate-900 border hover:bg-slate-50;
+           transition-all duration-200 active:scale-95 bg-white text-slate-900 border
+           hover:bg-slate-50 hover:-translate-y-0.5 shadow-sm hover:shadow-md
+           focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-300;
   }
-  .chip     { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border bg-white/60 }
-  /* Inline the previous "glass" utilities directly here */
-  .card     { @apply rounded-2xl p-6 bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl }
+  .chip     { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border bg-white/70 backdrop-blur }
+
+  /* Tasteful card elevation with hover lift */
+  .card     { @apply rounded-2xl p-6 bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl }
+
+  /* Re-introduce the glass panel used on feature tiles */
+  .glass    { @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-sm }
+
   .title-xl { @apply text-4xl md:text-5xl font-extrabold leading-tight }
   .subtitle { @apply mt-3 text-lg text-slate-700 }
   .section  { @apply max-w-6xl mx-auto px-4 }
+
+  /* Subtle shadow for sticky header for better separation on scroll */
+  header.sticky { @apply shadow-sm }
 }
