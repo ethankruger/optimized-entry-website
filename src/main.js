@@ -1,4 +1,6 @@
 import './styles.css';
+import './animations.js';
+import './parallax.js';
 
 function mountNav(){
   const el = document.getElementById('app-nav'); if(!el) return;
@@ -19,19 +21,26 @@ function mountNav(){
     </nav>
     <button id="mnav" class="md:hidden ml-auto p-2 rounded-xl border">Menu</button>
   </div>
-  <div id="mobile" class="md:hidden hidden border-t">
+  <div id="mobile" class="md:hidden hidden border-t transition-all duration-300 ease-in-out">
     <div class="px-4 py-3 flex flex-col gap-3">
-      <a href="/index.html">Home</a>
-      <a href="/about-us.html">About Us</a>
-      <a href="/get-a-demo.html">Get a Demo</a>
-      <a href="/testimonials.html">Testimonials</a>
-      <a href="/contact.html">Contact Us</a>
+      <a href="/index.html" class="transition-colors duration-200 hover:text-brand-orange">Home</a>
+      <a href="/about-us.html" class="transition-colors duration-200 hover:text-brand-orange">About Us</a>
+      <a href="/get-a-demo.html" class="transition-colors duration-200 hover:text-brand-orange">Get a Demo</a>
+      <a href="/testimonials.html" class="transition-colors duration-200 hover:text-brand-orange">Testimonials</a>
+      <a href="/contact.html" class="transition-colors duration-200 hover:text-brand-orange">Contact Us</a>
       <a href="/download.html" class="btn-primary justify-center">Download</a>
     </div>
   </div>
 </header>`;
   const btn = document.getElementById('mnav');
   const mob = document.getElementById('mobile');
-  if (btn && mob) btn.onclick = () => mob.classList.toggle('hidden');
+  if (btn && mob) {
+    btn.onclick = () => {
+      mob.classList.toggle('hidden');
+      // Add rotation to menu button
+      btn.classList.toggle('rotate-90');
+    };
+    btn.classList.add('transition-transform', 'duration-300');
+  }
 }
 mountNav();
