@@ -1,0 +1,19 @@
+{
+    "name": "Optimized Entry",
+    "short_name": "OptimizedEntry",
+    "icons": [
+        {
+            "src": "/img/logo-mark.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/img/logo-mark.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#30b357",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
