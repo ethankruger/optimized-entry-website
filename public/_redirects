@@ -1,0 +1,13 @@
+# Netlify redirects for React SPA
+
+# Redirect old HTML pages to new React routes
+/contact.html           /contact           301
+/about-us.html          /about             301
+/pricing.html           /pricing           301
+/testimonials.html      /testimonials      301
+/get-a-demo.html        /get-a-demo        301
+/download.html          /                  301
+/pricing-request.html   /pricing           301
+
+# SPA fallback - serve index.html for all routes
+/*    /index.html   200
