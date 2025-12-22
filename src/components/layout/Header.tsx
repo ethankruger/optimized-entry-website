@@ -37,8 +37,8 @@ const Header = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
-            ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-200/60'
-            : 'bg-white/80 backdrop-blur-sm border-b border-transparent'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-200/60'
+          : 'bg-white/80 backdrop-blur-sm border-b border-transparent'
           }`}
       >
         <div className="section">
@@ -83,6 +83,9 @@ const Header = () => {
 
             {/* Desktop CTA Buttons */}
             <div className="hidden md:flex items-center gap-3">
+              <Button asChild className="text-sm bg-[#f27a20] hover:bg-[#d66a1a] text-black border-black">
+                <a href="https://optimizedentryportal.netlify.app">Optimized Entry Portal</a>
+              </Button>
               <Button asChild variant="neutral" className="text-sm">
                 <Link to="/get-a-demo">Get a Demo</Link>
               </Button>
@@ -124,8 +127,8 @@ const Header = () => {
                   <Link
                     to={link.to}
                     className={`block py-2 px-4 rounded-lg font-medium transition-all duration-200 ${location.pathname === link.to
-                        ? 'bg-green-50 text-brand-green'
-                        : 'text-slate-700 hover:bg-slate-50'
+                      ? 'bg-green-50 text-brand-green'
+                      : 'text-slate-700 hover:bg-slate-50'
                       }`}
                   >
                     {link.label}
@@ -133,6 +136,9 @@ const Header = () => {
                 </motion.div>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-slate-200">
+                <Button asChild className="w-full justify-center bg-[#f27a20] hover:bg-[#d66a1a] text-black border-black">
+                  <a href="https://optimizedentryportal.netlify.app">Optimized Entry Portal</a>
+                </Button>
                 <Button asChild variant="neutral" className="w-full justify-center">
                   <Link to="/get-a-demo">Get a Demo</Link>
                 </Button>

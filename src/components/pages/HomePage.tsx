@@ -283,9 +283,7 @@ const HomePage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to get started?</h2>
-            <p className="text-lg mb-8 opacity-90">
-              Join hundreds of businesses already using Optimized Entry
-            </p>
+
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild size="lg" className="bg-white text-brand-green border-black hover:bg-slate-50">
                 <Link to="/contact">Talk to Us</Link>
