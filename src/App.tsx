@@ -9,6 +9,9 @@ import TestimonialsPage from './components/pages/TestimonialsPage'
 import DemoPage from './components/pages/DemoPage'
 import AudioDemoPage from './components/pages/AudioDemoPage'
 import DigitalSerenity from './components/ui/digital-serenity-animated-landing-page'
+import TermsOfServicePage from './components/pages/TermsOfServicePage'
+import PrivacyPolicyPage from './components/pages/PrivacyPolicyPage'
+import Footer from './components/layout/Footer'
 
 function App() {
   return (
@@ -24,7 +27,10 @@ function App() {
           <Route path="/get-a-demo" element={<DemoPage />} />
           <Route path="/hear-it" element={<AudioDemoPage />} />
           <Route path="/serenity-demo" element={<DigitalSerenity />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   )

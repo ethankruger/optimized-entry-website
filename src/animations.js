@@ -31,8 +31,8 @@ export function initScrollAnimations() {
   animatedElements.forEach((el) => {
     // Skip elements that already have animation classes
     if (el.classList.contains('animate-fade-slide-up') ||
-        el.classList.contains('animate-scale-in') ||
-        el.classList.contains('animate-glow-pulse')) {
+      el.classList.contains('animate-scale-in') ||
+      el.classList.contains('animate-glow-pulse')) {
       return;
     }
     // Add initial hidden state
