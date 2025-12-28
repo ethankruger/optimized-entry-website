@@ -7,7 +7,7 @@ const HowItWorksSection = () => {
         {
             number: 1,
             title: 'Connect your line',
-            description: 'We provision a number or forward your existing line to the AI receptionist.',
+            description: 'We provide a number and forward it to your AI receptionist.',
             color: 'bg-brand-green',
             textColor: 'text-brand-green',
             time: '5 minutes',
