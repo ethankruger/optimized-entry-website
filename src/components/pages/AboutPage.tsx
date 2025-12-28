@@ -1,9 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { ScrollIndicator } from '@/components/ui/ScrollIndicator'
 
 const AboutPage = () => {
   return (
     <div className="min-h-screen py-20">
+      <ScrollIndicator />
       <div className="section max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

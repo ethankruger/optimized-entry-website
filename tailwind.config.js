@@ -36,6 +36,9 @@ export default {
                 base: '500',
                 heading: '700',
             },
+            fontFamily: {
+                handwritten: ['"Caveat"', '"Comic Sans MS"', 'cursive'],
+            },
         },
     },
     plugins: [],

@@ -64,17 +64,88 @@
 /* Base */
 @layer base {
   html {
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
   }
 
   body {
-    @apply text-slate-900 bg-slate-50
+    @apply text-slate-900 bg-slate-50;
+    overflow-x: hidden;
+  }
+
+  /* Smooth scroll with momentum on iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Subtle selection color aligned with brand */
   ::selection {
     background: rgba(48, 179, 87, 0.18);
     color: #0f172a;
+  }
+
+  /* Gentle page fade-in on navigation (safe for reduced-motion) */
+  @keyframes oe-page-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px)
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  }
+
+  body {
+    animation: oe-page-in .24s ease-out
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      animation: none
+    }
+  }
+
+  /* Staggered fade-in animations for sections */
+  @keyframes oe-fade-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px)
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  }
+
+  /* Gentle scale-in for cards */
+  @keyframes oe-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95)
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1)
+    }
+  }
+
+  /* Subtle glow pulse for hero elements */
+  @keyframes oe-glow-pulse {
+
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1)
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05)
+    }
   }
 
   /* Gentle page fade-in on navigation (safe for reduced-motion) */
@@ -190,6 +261,10 @@
 
   .bg-brand-green {
     background-color: #30b357;
+  }
+
+  .bg-brand-orange {
+    background-color: #f27a20;
   }
 
   .bg-gradient-brand {

@@ -4,12 +4,12 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Phone, Calendar, Zap, BarChart3, Clock, CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import HowItWorksSection from '../ui/how-it-works-section'
+import { ScrollIndicator } from '@/components/ui/ScrollIndicator'
 
 const HomePage = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const { scrollY } = useScroll()
-  const heroY = useTransform(scrollY, [0, 500], [0, 150])
-  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0])
+  const heroY = useTransform(scrollY, [0, 500], [0, 50])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -61,9 +61,10 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
+      <ScrollIndicator />
       {/* Hero Section with Parallax */}
       <motion.section
-        style={{ y: heroY, opacity: heroOpacity }}
+        style={{ y: heroY }}
         className="bg-hero relative overflow-hidden"
       >
         {/* Floating Gradient Orbs */}
