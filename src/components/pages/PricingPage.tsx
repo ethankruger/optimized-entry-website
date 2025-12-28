@@ -199,7 +199,7 @@ const PricingPage = () => {
 
                 {/* CTA Button - pushed to bottom with mt-auto */}
                 <Link
-                  to="/contact"
+                  to="/get-a-demo"
                   className={`block w-full py-3 px-6 rounded-xl text-center font-bold transition-all text-white mt-auto ${plan.buttonBg} ${plan.buttonHover} hover:shadow-lg hover:-translate-y-0.5`}
                 >
                   {plan.isCustom ? 'Get Custom Quote' : 'Get Started'}
