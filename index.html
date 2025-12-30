@@ -12,14 +12,16 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://optimizedentry.com">
   <meta property="og:title" content="Optimized Entry - AI Reception & Booking">
-  <meta property="og:description" content="AI reception and booking that turns calls into customers — automatically. Never miss a business opportunity with Optimized Entry.">
+  <meta property="og:description"
+    content="AI reception and booking that turns calls into customers — automatically. Never miss a business opportunity with Optimized Entry.">
   <meta property="og:image" content="https://optimizedentry.com/img/logo-mark.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://optimizedentry.com">
   <meta property="twitter:title" content="Optimized Entry - AI Reception & Booking">
-  <meta property="twitter:description" content="AI reception and booking that turns calls into customers — automatically. Never miss a business opportunity with Optimized Entry.">
+  <meta property="twitter:description"
+    content="AI reception and booking that turns calls into customers — automatically. Never miss a business opportunity with Optimized Entry.">
   <meta property="twitter:image" content="https://optimizedentry.com/img/logo-mark.png">
 
   <!-- Favicon -->
@@ -64,6 +66,18 @@
     <input name="email" />
     <input name="company" />
     <input name="phone" />
+  </form>
+
+  <form name="onboarding" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="onboarding" />
+    <input name="bot-field" />
+    <input name="email" />
+    <textarea name="service-areas"></textarea>
+    <textarea name="faqs"></textarea>
+    <textarea name="pricing"></textarea>
+    <textarea name="emergency-rules"></textarea>
+    <textarea name="calendar-rules"></textarea>
+    <textarea name="hours"></textarea>
   </form>
 
   <script type="module" src="/src/main.tsx"></script>
