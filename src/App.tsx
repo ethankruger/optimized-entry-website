@@ -11,6 +11,7 @@ import AudioDemoPage from './components/pages/AudioDemoPage'
 import DigitalSerenity from './components/ui/digital-serenity-animated-landing-page'
 import TermsOfServicePage from './components/pages/TermsOfServicePage'
 import PrivacyPolicyPage from './components/pages/PrivacyPolicyPage'
+import OnboardingPage from './components/pages/OnboardingPage'
 import Footer from './components/layout/Footer'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/serenity-demo" element={<DigitalSerenity />} />
           <Route path="/terms" element={<TermsOfServicePage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
         </Routes>
         <Footer />
       </div>
