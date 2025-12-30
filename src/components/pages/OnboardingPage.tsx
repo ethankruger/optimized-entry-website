@@ -39,7 +39,12 @@ const OnboardingPage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <NetlifyForm formName="onboarding" className="card space-y-6">
+                        <NetlifyForm
+                            formName="onboarding"
+                            className="card space-y-6"
+                            successTitle="Thank you for completing the onboarding process!"
+                            successMessage="We've received your information and will use it to set up your account."
+                        >
                             {/* Email */}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-semibold mb-2">

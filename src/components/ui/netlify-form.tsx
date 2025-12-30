@@ -7,6 +7,8 @@ interface NetlifyFormProps {
   children: React.ReactNode
   onSuccess?: () => void
   className?: string
+  successTitle?: string
+  successMessage?: string
 }
 
 /**
@@ -25,6 +27,8 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
   children,
   onSuccess,
   className = '',
+  successTitle = 'Message sent successfully!',
+  successMessage = "We'll get back to you within 24 hours.",
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -102,8 +106,8 @@ export const NetlifyForm: React.FC<NetlifyFormProps> = ({
             >
               <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
               <div>
-                <p className="font-semibold text-green-900">Message sent successfully!</p>
-                <p className="text-sm text-green-700">We'll get back to you within 24 hours.</p>
+                <p className="font-semibold text-green-900">{successTitle}</p>
+                <p className="text-sm text-green-700">{successMessage}</p>
               </div>
             </motion.div>
           )}
