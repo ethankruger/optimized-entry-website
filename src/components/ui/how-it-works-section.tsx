@@ -1,123 +1,154 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { CheckCircle2, Users, Calendar, BarChart3 } from 'lucide-react'
+import React, { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { Phone, Settings, Rocket, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Button } from '@/components/ui/button'
 
 const HowItWorksSection = () => {
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true, margin: '-100px' })
+
     const steps = [
         {
-            number: 1,
-            title: 'Connect your line',
-            description: 'We provide a number and forward it to your AI receptionist.',
-            color: 'bg-brand-green',
-            textColor: 'text-brand-green',
-            time: '5 minutes',
-            gradient: 'from-green-400 to-green-600',
-            shadowColor: 'shadow-green-200'
+            number: '01',
+            icon: Phone,
+            title: 'Connect',
+            subtitle: 'your phone line',
+            description: 'We provide a dedicated number that forwards to your AI receptionist.',
+            color: 'green',
         },
         {
-            number: 2,
-            title: 'Teach your services',
-            description: 'We load pricing, service areas, and booking rules to guide conversations.',
-            color: 'bg-brand-orange',
-            textColor: 'text-brand-orange',
-            time: '1-2 days',
-            gradient: 'from-orange-400 to-orange-600',
-            shadowColor: 'shadow-orange-200'
+            number: '02',
+            icon: Settings,
+            title: 'Configure',
+            subtitle: 'your business rules',
+            description: 'We load your services, pricing, and booking preferences. The AI learns your business. 1-2 business days.',
+            color: 'orange',
         },
         {
-            number: 3,
-            title: 'Book and track',
-            description: 'Calls convert to appointments or qualified leads. You get confirmations and logs.',
-            color: 'bg-purple-600',
-            textColor: 'text-purple-600',
-            time: 'Ongoing',
-            gradient: 'from-purple-400 to-purple-600',
-            shadowColor: 'shadow-purple-200'
-        }
+            number: '03',
+            icon: Rocket,
+            title: 'Launch',
+            subtitle: 'and start booking',
+            description: 'Calls convert to appointments automatically. You get real-time notifications and full logs.',
+            color: 'purple',
+        },
     ]
 
     return (
-        <section className="py-24 relative overflow-hidden">
-            <div className="section max-w-6xl mx-auto px-4">
-                <div className="text-center mb-16">
+        <section ref={ref} className="py-32 bg-[#fafaf9] relative">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+                {/* Header */}
+                <div className="max-w-2xl mb-20">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-brand-green text-sm font-semibold border border-green-100 mb-6"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        className="flex items-center gap-3 mb-6"
                     >
-                        <Users className="w-4 h-4" />
-                        Simple 3-step setup
+                        <div className="w-8 h-px bg-brand-green" />
+                        <span className="text-sm font-semibold text-brand-green uppercase tracking-wider">How it works</span>
                     </motion.div>
-
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-black mb-6 text-slate-900"
+                        className="text-3xl lg:text-4xl font-black text-slate-900 leading-tight mb-6"
                     >
-                        How it works
+                        Up and running
+                        <br />
+                        in days, not months.
                     </motion.h2>
-
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2 }}
-                        className="text-lg text-slate-600 max-w-2xl mx-auto"
+                        className="text-lg text-slate-600"
                     >
-                        Get up and running in days, not months. Our streamlined process makes AI integration effortless.
+                        A simple three-step process designed for busy business owners.
                     </motion.p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 relative z-10">
-                    {/* Connecting line */}
-                    <div className="hidden md:block absolute top-[2.5rem] left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-green-200 via-orange-200 to-purple-200" />
-
+                {/* Steps */}
+                <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
                     {steps.map((step, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
-                            className="relative"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.2 + index * 0.15 }}
+                            className="relative group"
                         >
-                            <div className="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 h-full flex flex-col items-center text-center group hover:-translate-y-2 transition-all duration-300">
-                                <div className={`w-14 h-14 rounded-full ${step.gradient} bg-gradient-to-br flex items-center justify-center text-white text-xl font-bold mb-6 shadow-lg ${step.shadowColor} relative z-10 group-hover:scale-110 transition-transform`}>
+                            {/* Connecting line */}
+                            {index < steps.length - 1 && (
+                                <div className="hidden lg:block absolute top-16 left-full w-full h-px">
+                                    <motion.div 
+                                        className="h-full bg-gradient-to-r from-slate-200 to-slate-100"
+                                        initial={{ scaleX: 0 }}
+                                        animate={isInView ? { scaleX: 1 } : {}}
+                                        transition={{ delay: 0.5 + index * 0.2, duration: 0.8 }}
+                                        style={{ transformOrigin: 'left' }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Card */}
+                            <div className="relative bg-white rounded-2xl p-8 border border-slate-100 h-full hover:shadow-xl hover:shadow-slate-100/80 hover:border-slate-200 transition-all duration-300">
+                                {/* Large faded number */}
+                                <span className="absolute top-4 right-6 text-6xl font-black text-slate-100 select-none">
                                     {step.number}
+                                </span>
+
+                                {/* Icon */}
+                                <div className="relative z-10 mb-6">
+                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
+                                        step.color === 'green' 
+                                            ? 'bg-brand-green shadow-green-200' 
+                                            : step.color === 'orange'
+                                            ? 'bg-brand-orange shadow-orange-200'
+                                            : 'bg-purple-500 shadow-purple-200'
+                                    }`}>
+                                        <step.icon className="w-5 h-5 text-white" />
+                                    </div>
                                 </div>
 
-                                <h3 className="text-xl font-bold mb-3 text-slate-900">{step.title}</h3>
-                                <p className="text-slate-600 mb-6 leading-relaxed">
-                                    {step.description}
-                                </p>
-
-                                <div className={`mt-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${step.textColor} bg-opacity-10 bg-slate-100`}>
-                                    <CheckCircle2 className="w-3.5 h-3.5" />
-                                    {step.time}
+                                {/* Content */}
+                                <div className="relative z-10">
+                                    <h3 className="text-2xl font-black text-slate-900 mb-1">
+                                        {step.title}
+                                    </h3>
+                                    <p className={`text-lg font-medium mb-4 ${
+                                        step.color === 'green' ? 'text-brand-green' : 
+                                        step.color === 'orange' ? 'text-brand-orange' : 
+                                        'text-purple-600'
+                                    }`}>
+                                        {step.subtitle}
+                                    </p>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        {step.description}
+                                    </p>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
+                {/* Bottom CTA */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                    className="mt-16 flex justify-center gap-8 text-sm font-semibold text-slate-600"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.8 }}
+                    className="mt-20 pt-12 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6"
                 >
-                    <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-brand-green" />
-                        No long-term contracts
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-brand-green" />
-                        Cancel anytime
-                    </div>
+                    <p className="text-slate-600">
+                        <span className="font-semibold text-slate-900">No technical skills required.</span>
+                        {' '}We handle the setup for you.
+                    </p>
+                    <Button asChild variant="dark" className="group">
+                        <Link to="/get-a-demo">
+                            Schedule a demo
+                            <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </Button>
                 </motion.div>
             </div>
         </section>

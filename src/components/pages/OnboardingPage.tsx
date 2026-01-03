@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ClipboardList } from 'lucide-react'
+import { ClipboardList, CheckCircle, ArrowRight } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
@@ -8,31 +8,37 @@ import { ScrollIndicator } from '@/components/ui/ScrollIndicator'
 
 const OnboardingPage = () => {
     return (
-        <div className="min-h-screen py-20 bg-hero">
+        <div className="min-h-screen bg-[#fafaf9]">
             <ScrollIndicator />
-            <div className="section">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="max-w-4xl mx-auto"
-                >
-                    <div className="text-center mb-8">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                            className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-2 mb-4"
-                        >
-                            <ClipboardList className="w-4 h-4 text-green-600" />
-                            <span className="text-sm font-semibold text-green-700">Business Setup</span>
-                        </motion.div>
-                        <h1 className="title-xl mb-4">
-                            <span className="text-gradient-brand">Onboarding</span> Questionnaire
+            
+            {/* Hero Section */}
+            <section className="relative py-20 bg-white overflow-hidden">
+                {/* Decorative elements */}
+                <div className="absolute top-20 right-16 w-24 h-24 border-2 border-slate-100 rounded-full" />
+                <div className="absolute top-28 right-24 w-4 h-4 bg-brand-green rounded-full" />
+                <div className="absolute bottom-32 left-12 w-16 h-16 border border-dashed border-orange-200 rounded-full" />
+                <div className="absolute bottom-40 left-20 w-3 h-3 bg-brand-orange rounded-full" />
+
+                <div className="max-w-4xl mx-auto px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-center mb-12"
+                    >
+                        {/* Eyebrow */}
+                        <div className="flex items-center justify-center gap-3 mb-6">
+                            <div className="w-8 h-px bg-brand-green" />
+                            <span className="text-sm font-semibold text-brand-green uppercase tracking-wider">Business Setup</span>
+                            <div className="w-8 h-px bg-brand-green" />
+                        </div>
+
+                        <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-4">
+                            <span className="text-brand-green">Onboarding</span> Questionnaire
                         </h1>
-                        <p className="text-lg text-slate-600">
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                             Help us understand your business better so we can provide the best service possible.
                         </p>
-                    </div>
+                    </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -41,133 +47,153 @@ const OnboardingPage = () => {
                     >
                         <NetlifyForm
                             formName="onboarding"
-                            className="card space-y-6"
+                            className="bg-white border border-slate-200 rounded-3xl p-8 shadow-xl shadow-slate-100/50"
                             successTitle="Thank you for completing the onboarding process!"
                             successMessage="We've received your information and will use it to set up your account."
                         >
-                            {/* Email */}
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                                    Email <span className="text-red-500">*</span>
-                                </label>
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="your@email.com"
-                                    required
-                                />
+                            {/* Form Header */}
+                            <div className="flex items-center gap-4 mb-10 pb-6 border-b border-slate-100">
+                                <div className="relative">
+                                    <div className="w-14 h-14 bg-brand-green rounded-full flex items-center justify-center shadow-lg shadow-green-500/20">
+                                        <ClipboardList className="w-6 h-6 text-white" />
+                                    </div>
+                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-brand-orange rounded-full flex items-center justify-center">
+                                        <CheckCircle className="w-2.5 h-2.5 text-white" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-slate-900">Business Information</h3>
+                                    <p className="text-slate-500 text-sm">Fill out each section below</p>
+                                </div>
                             </div>
 
-                            {/* Service Areas */}
-                            <div>
-                                <label htmlFor="service-areas" className="block text-sm font-semibold mb-2">
-                                    Service Areas <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                    id="service-areas"
-                                    name="service-areas"
-                                    placeholder="List the geographic areas you serve (e.g., Minneapolis, St. Paul, surrounding suburbs...)"
-                                    rows={4}
-                                    required
-                                />
-                                <p className="text-xs text-slate-500 mt-1">
-                                    Please list all cities, zip codes, or regions where you provide services.
-                                </p>
-                            </div>
+                            <div className="space-y-8">
+                                {/* Email */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="email" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Email <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">Your primary contact email</p>
+                                    <Input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        required
+                                    />
+                                </div>
 
-                            {/* FAQs */}
-                            <div>
-                                <label htmlFor="faqs" className="block text-sm font-semibold mb-2">
-                                    Frequently Asked Questions (FAQs) <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                    id="faqs"
-                                    name="faqs"
-                                    placeholder="List common questions your customers ask and their answers..."
-                                    rows={6}
-                                    required
-                                />
-                                <p className="text-xs text-slate-500 mt-1">
-                                    Include questions about your services, policies, or anything customers commonly ask.
-                                </p>
-                            </div>
+                                {/* Service Areas */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="service-areas" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Service Areas <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">
+                                        List all cities, zip codes, or regions where you provide services
+                                    </p>
+                                    <Textarea
+                                        id="service-areas"
+                                        name="service-areas"
+                                        placeholder="e.g., Minneapolis, St. Paul, surrounding suburbs..."
+                                        rows={4}
+                                        required
+                                    />
+                                </div>
 
-                            {/* Pricing */}
-                            <div>
-                                <label htmlFor="pricing" className="block text-sm font-semibold mb-2">
-                                    Pricing <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                    id="pricing"
-                                    name="pricing"
-                                    placeholder="Describe your pricing structure (e.g., hourly rates, service packages, emergency rates...)"
-                                    rows={5}
-                                    required
-                                />
-                                <p className="text-xs text-slate-500 mt-1">
-                                    Include standard rates, emergency rates, and any special pricing information.
-                                </p>
-                            </div>
+                                {/* FAQs */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="faqs" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Frequently Asked Questions (FAQs) <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">
+                                        Common questions your customers ask and their answers
+                                    </p>
+                                    <Textarea
+                                        id="faqs"
+                                        name="faqs"
+                                        placeholder="Q: Do you offer emergency services?&#10;A: Yes, we're available 24/7..."
+                                        rows={6}
+                                        required
+                                    />
+                                </div>
 
-                            {/* Emergency Rules */}
-                            <div>
-                                <label htmlFor="emergency-rules" className="block text-sm font-semibold mb-2">
-                                    Emergency Rules <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                    id="emergency-rules"
-                                    name="emergency-rules"
-                                    placeholder="Define what constitutes an emergency (e.g., pipe burst, no heat in winter, gas leak...)"
-                                    rows={5}
-                                    required
-                                />
-                                <p className="text-xs text-slate-500 mt-1">
-                                    Specify emergency scenarios and how they should be prioritized or handled.
-                                </p>
-                            </div>
+                                {/* Pricing */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="pricing" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Pricing <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">
+                                        Your pricing structure (hourly rates, service packages, emergency rates)
+                                    </p>
+                                    <Textarea
+                                        id="pricing"
+                                        name="pricing"
+                                        placeholder="Standard rate: $X/hour&#10;Emergency: $X/hour..."
+                                        rows={5}
+                                        required
+                                    />
+                                </div>
 
-                            {/* Calendar Rules */}
-                            <div>
-                                <label htmlFor="calendar-rules" className="block text-sm font-semibold mb-2">
-                                    Calendar Rules <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                    id="calendar-rules"
-                                    name="calendar-rules"
-                                    placeholder="Specify travel buffers, job durations, and scheduling preferences..."
-                                    rows={5}
-                                    required
-                                />
-                                <p className="text-xs text-slate-500 mt-1">
-                                    Include: time needed between jobs, typical job durations, travel time requirements, etc.
-                                </p>
-                            </div>
+                                {/* Emergency Rules */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="emergency-rules" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Emergency Rules <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">
+                                        What constitutes an emergency and how should they be prioritized
+                                    </p>
+                                    <Textarea
+                                        id="emergency-rules"
+                                        name="emergency-rules"
+                                        placeholder="Emergencies: pipe burst, no heat in winter, gas leak..."
+                                        rows={5}
+                                        required
+                                    />
+                                </div>
 
-                            {/* Hours */}
-                            <div>
-                                <label htmlFor="hours" className="block text-sm font-semibold mb-2">
-                                    Business Hours <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                    id="hours"
-                                    name="hours"
-                                    placeholder="List your operating hours (e.g., Mon-Fri: 8am-5pm, Sat: 9am-3pm, Sun: Closed...)"
-                                    rows={4}
-                                    required
-                                />
-                                <p className="text-xs text-slate-500 mt-1">
-                                    Include regular hours and any special hours for emergencies or weekends.
-                                </p>
-                            </div>
+                                {/* Calendar Rules */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="calendar-rules" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Calendar Rules <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">
+                                        Travel buffers, job durations, and scheduling preferences
+                                    </p>
+                                    <Textarea
+                                        id="calendar-rules"
+                                        name="calendar-rules"
+                                        placeholder="30 min travel buffer, typical job 1-2 hours..."
+                                        rows={5}
+                                        required
+                                    />
+                                </div>
 
-                            <Button type="submit" size="lg" className="w-full">
-                                Submit Onboarding Information
-                            </Button>
+                                {/* Hours */}
+                                <div className="bg-slate-50 rounded-2xl p-6">
+                                    <label htmlFor="hours" className="block text-sm font-bold text-slate-900 mb-1">
+                                        Business Hours <span className="text-brand-orange">*</span>
+                                    </label>
+                                    <p className="text-xs text-slate-500 mb-3">
+                                        Regular hours and any special hours for emergencies or weekends
+                                    </p>
+                                    <Textarea
+                                        id="hours"
+                                        name="hours"
+                                        placeholder="Mon-Fri: 8am-5pm&#10;Sat: 9am-3pm&#10;Sun: Closed..."
+                                        rows={4}
+                                        required
+                                    />
+                                </div>
+
+                                <Button type="submit" size="lg" className="w-full">
+                                    Submit Onboarding Information
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                </Button>
+                            </div>
                         </NetlifyForm>
                     </motion.div>
-                </motion.div>
-            </div>
+                </div>
+            </section>
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import React from 'react'
-import { Check, Phone, TrendingUp, Zap, Building2, Wrench, Calendar, Bot, Bell, MessageSquare, Users, LayoutDashboard } from "lucide-react"
+import { Check, Phone, TrendingUp, Zap, Building2, Wrench, Calendar, Bot, Bell, MessageSquare, Users, LayoutDashboard, ArrowRight } from "lucide-react"
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator'
+import { Button } from '@/components/ui/button'
 
 const PricingPage = () => {
   const header = useScrollAnimation()
@@ -14,305 +16,357 @@ const PricingPage = () => {
   const plans = [
     {
       name: "Starter",
-      icon: <Wrench className="w-6 h-6" />,
+      icon: Wrench,
       calls: "50",
       price: 89,
       overage: "$2.00",
       bestFor: "New businesses or low volume",
-      color: "slate",
-      iconBg: "bg-slate-100",
-      iconColor: "text-slate-700",
       borderColor: "border-slate-200",
-      buttonBg: "bg-slate-700",
-      buttonHover: "hover:bg-slate-800",
+      accentColor: "slate",
     },
     {
       name: "Growth",
-      icon: <TrendingUp className="w-6 h-6" />,
+      icon: TrendingUp,
       calls: "150",
       price: 220,
       overage: "$1.80",
       bestFor: "Small/medium home-service companies",
-      color: "green",
-      iconBg: "bg-green-100",
-      iconColor: "text-brand-green",
       borderColor: "border-green-200",
-      buttonBg: "bg-brand-green",
-      buttonHover: "hover:bg-green-700",
+      accentColor: "green",
     },
     {
       name: "Pro",
-      icon: <Zap className="w-6 h-6" />,
+      icon: Zap,
       calls: "400",
       price: 510,
       overage: "$1.60",
       bestFor: "Busy teams that want full intake support",
-      color: "orange",
-      iconBg: "bg-orange-100",
-      iconColor: "text-brand-orange",
       borderColor: "border-orange-200",
-      buttonBg: "bg-brand-orange",
-      buttonHover: "hover:bg-orange-700",
+      accentColor: "orange",
     },
     {
       name: "Enterprise",
-      icon: <Building2 className="w-6 h-6" />,
+      icon: Building2,
       calls: "Custom",
       price: "Custom",
       overage: "Volume-discounted",
       bestFor: "Multi-tech teams & franchises",
-      color: "purple",
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-700",
       borderColor: "border-purple-200",
-      buttonBg: "bg-purple-700",
-      buttonHover: "hover:bg-purple-800",
+      accentColor: "purple",
       isCustom: true,
     },
   ]
 
   const features = [
     {
-      icon: <Bot className="w-5 h-5" />,
+      icon: Bot,
       title: "AI Call Answering",
       description: "Smart AI handles every call professionally",
-      color: "#30b357"
+      color: "green"
     },
     {
-      icon: <Calendar className="w-5 h-5" />,
+      icon: Calendar,
       title: "Instant Booking and Google Calendar Sync",
       description: "Customers book appointments 24/7 with seamless integration",
-      color: "#30b357"
+      color: "orange"
     },
     {
-      icon: <MessageSquare className="w-5 h-5" />,
+      icon: MessageSquare,
       title: "Call Summaries",
       description: "Full call summaries with notes and recordings",
-      color: "#30b357"
+      color: "purple"
     },
     {
-      icon: <Users className="w-5 h-5" />,
+      icon: Users,
       title: "Smart Routing",
       description: "Calls routed to the right person, every time",
-      color: "#30b357"
+      color: "blue"
     },
     {
-      icon: <Bell className="w-5 h-5" />,
+      icon: Bell,
       title: "Instant Emergency Alerts",
       description: "Urgent calls flagged and logged immediately",
-      color: "#30b357"
+      color: "green"
     },
     {
-      icon: <LayoutDashboard className="w-5 h-5" />,
+      icon: LayoutDashboard,
       title: "Access to Optimized Entry Portal",
       description: "Full access to dashboard, analytics, invoice sending, and more",
-      color: "#30b357"
+      color: "orange"
     },
   ]
 
+  // Simple consistent icon - all circles
+  const SimpleIcon = ({ Icon, color }: { Icon: any, color: string }) => {
+    const bgColor = color === 'green' ? 'bg-brand-green' 
+      : color === 'orange' ? 'bg-brand-orange'
+      : color === 'purple' ? 'bg-purple-500'
+      : 'bg-blue-500'
+    
+    return (
+      <div className={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center shadow-md`}>
+        <Icon className="w-5 h-5 text-white" />
+      </div>
+    )
+  }
+
+  // Plan icon - consistent circles
+  const PlanIcon = ({ Icon, color }: { Icon: any, color: string }) => {
+    const bgColor = color === 'green' ? 'bg-brand-green' 
+      : color === 'orange' ? 'bg-brand-orange'
+      : color === 'purple' ? 'bg-purple-500'
+      : 'bg-slate-700'
+    
+    return (
+      <div className={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center shadow-md`}>
+        <Icon className="w-5 h-5 text-white" />
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen py-20 bg-gradient-to-b from-slate-50 to-white relative">
+    <div className="min-h-screen bg-[#fafaf9]">
       <ScrollIndicator />
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div
-          ref={header.ref}
-          className={`text-center mb-16 transition-all duration-700 ${
-            header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-2 mb-6">
-            <Phone className="w-4 h-4 text-brand-green" />
-            <span className="text-sm font-semibold text-brand-green">Simple Pricing</span>
+      
+      {/* Hero Section */}
+      <section className="relative py-24 bg-white overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-20 w-24 h-24 border-2 border-slate-100 rounded-full" />
+        <div className="absolute top-28 right-28 w-4 h-4 bg-brand-green rounded-full" />
+        <div className="absolute bottom-32 left-16 w-16 h-16 border border-dashed border-orange-200 rounded-full" />
+        <div className="absolute bottom-40 left-24 w-3 h-3 bg-brand-orange rounded-full" />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Header */}
+          <div
+            ref={header.ref}
+            className={`text-center mb-16 transition-all duration-700 ${
+              header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            {/* Eyebrow */}
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-8 h-px bg-brand-green" />
+              <span className="text-sm font-semibold text-brand-green uppercase tracking-wider">Simple Pricing</span>
+              <div className="w-8 h-px bg-brand-green" />
+            </div>
+            
+            <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-4">
+              Never miss a customer call again.
+              <br />
+              <span className="text-brand-green">Choose the plan that fits.</span>
+            </h1>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Designed for contractors, plumbers, HVAC, electricians, and more.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
-            Never miss a customer call again. Choose the plan that fits your business.
-          </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Designed for contractors, plumbers, handymen, etc.
-          </p>
-        </div>
 
-        {/* Pricing Cards */}
-        <div
-          ref={cardsSection.ref}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-        >
-          {plans.map((plan, index) => {
-            const delay = index * 100
-            return (
-            <div
-              key={plan.name}
-              className={`relative bg-white rounded-2xl shadow-lg border-2 ${plan.borderColor} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl flex flex-col ${
-                cardsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: `${delay}ms` }}
-            >
-              <div className="p-6 flex flex-col flex-grow">
-                {/* Icon */}
-                <div className={`w-14 h-14 ${plan.iconBg} rounded-xl flex items-center justify-center mb-4 ${plan.iconColor}`}>
-                  {plan.icon}
-                </div>
+          {/* Pricing Cards */}
+          <div
+            ref={cardsSection.ref}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          >
+            {plans.map((plan, index) => {
+              const delay = index * 100
+              return (
+              <motion.div
+                key={plan.name}
+                className={`relative bg-white rounded-3xl shadow-lg border-2 ${plan.borderColor} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl flex flex-col ${
+                  cardsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${delay}ms` }}
+              >
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Plan Icon */}
+                  <div className="mb-4">
+                    <PlanIcon Icon={plan.icon} color={plan.accentColor} />
+                  </div>
 
-                {/* Plan Name */}
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h3>
+                  {/* Plan Name */}
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h3>
 
-                {/* Call Limit - PROMINENT */}
-                <div className={`mb-4 p-4 ${plan.iconBg} rounded-xl border-2 ${plan.borderColor}`}>
-                  <div className="text-sm text-slate-600 font-semibold mb-1">Included Calls</div>
-                  {plan.isCustom ? (
-                    <div>
-                      <div className={`text-5xl font-black ${plan.iconColor}`}>Custom</div>
-                      <div className="text-xs text-slate-500 mt-1"> (500+  calls per month)</div>
-                    </div>
-                  ) : (
-                    <div className={`text-5xl font-black ${plan.iconColor}`}>
-                      {plan.calls}
-                    </div>
-                  )}
-                  {!plan.isCustom && <div className="text-xs text-slate-500 mt-1">calls per month</div>}
-                </div>
-
-                {/* Price */}
-                <div className="mb-4">
-                  <div className="flex items-baseline gap-1">
+                  {/* Call Limit - PROMINENT */}
+                  <div className={`mb-4 p-4 rounded-2xl border-2 ${
+                    plan.accentColor === 'green' ? 'bg-green-50 border-green-200' :
+                    plan.accentColor === 'orange' ? 'bg-orange-50 border-orange-200' :
+                    plan.accentColor === 'purple' ? 'bg-purple-50 border-purple-200' :
+                    'bg-slate-50 border-slate-200'
+                  }`}>
+                    <div className="text-sm text-slate-600 font-semibold mb-1">Included Calls</div>
                     {plan.isCustom ? (
-                      <span className="text-3xl font-bold text-slate-900">{plan.price}</span>
+                      <div>
+                        <div className={`text-4xl font-black ${
+                          plan.accentColor === 'purple' ? 'text-purple-600' : 'text-slate-900'
+                        }`}>Custom</div>
+                        <div className="text-xs text-slate-500 mt-1">(500+ calls per month)</div>
+                      </div>
                     ) : (
-                      <>
-                        <span className="text-sm text-slate-600">$</span>
-                        <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
-                        <span className="text-slate-600">/mo</span>
-                      </>
+                      <div className={`text-4xl font-black ${
+                        plan.accentColor === 'green' ? 'text-brand-green' :
+                        plan.accentColor === 'orange' ? 'text-brand-orange' :
+                        'text-slate-900'
+                      }`}>
+                        {plan.calls}
+                      </div>
                     )}
+                    {!plan.isCustom && <div className="text-xs text-slate-500 mt-1">calls per month</div>}
                   </div>
-                  <div className="text-sm text-slate-600 mt-1">
-                    <span className="font-semibold">{plan.overage}</span> per call overage
+
+                  {/* Price */}
+                  <div className="mb-4">
+                    <div className="flex items-baseline gap-1">
+                      {plan.isCustom ? (
+                        <span className="text-3xl font-bold text-slate-900">{plan.price}</span>
+                      ) : (
+                        <>
+                          <span className="text-sm text-slate-600">$</span>
+                          <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
+                          <span className="text-slate-600">/mo</span>
+                        </>
+                      )}
+                    </div>
+                    <div className="text-sm text-slate-600 mt-1">
+                      <span className="font-semibold">{plan.overage}</span> per call overage
+                    </div>
+                  </div>
+
+                  {/* Best For */}
+                  <div className="mb-6 p-3 bg-slate-50 rounded-xl">
+                    <div className="text-xs text-slate-500 font-semibold mb-1">BEST FOR</div>
+                    <div className="text-sm text-slate-700">{plan.bestFor}</div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <Button
+                    asChild
+                    size="lg"
+                    variant={
+                      plan.accentColor === 'green' ? 'default' : 
+                      plan.accentColor === 'orange' ? 'orange' : 
+                      plan.accentColor === 'purple' ? 'purple' : 'dark'
+                    }
+                    className="w-full mt-auto"
+                  >
+                    <Link to="/get-a-demo">
+                      {plan.isCustom ? 'Get Custom Quote' : 'Get Started'}
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                </div>
+              </motion.div>
+            )})}
+          </div>
+
+          {/* Setup Fee Notice */}
+          <div
+            ref={setupFee.ref}
+            className={`max-w-3xl mx-auto mb-16 transition-all duration-700 ${
+              setupFee.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="bg-brand-green rounded-3xl p-8 relative overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-6 right-6 w-16 h-16 border border-white/20 rounded-full" />
+              <div className="absolute top-10 right-10 w-3 h-3 bg-brand-orange rounded-full" />
+              
+              <div className="flex items-start gap-5 relative z-10">
+                <div className="relative">
+                  <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center">
+                    <Check className="w-7 h-7 text-brand-green" />
                   </div>
                 </div>
-
-                {/* Best For */}
-                <div className="mb-6 p-3 bg-slate-50 rounded-lg">
-                  <div className="text-xs text-slate-500 font-semibold mb-1">BEST FOR</div>
-                  <div className="text-sm text-slate-700">{plan.bestFor}</div>
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-2">All plans include a one-time setup fee of $400</h4>
+                  <p className="text-white/80">
+                    This covers OE software setup, smart call routing configuration, custom AI integrations tailored to your business, and Google Calendar syncing.
+                  </p>
                 </div>
-
-                {/* CTA Button - pushed to bottom with mt-auto */}
-                <Link
-                  to="/get-a-demo"
-                  className={`block w-full py-3 px-6 rounded-xl text-center font-bold transition-all text-white mt-auto ${plan.buttonBg} ${plan.buttonHover} hover:shadow-lg hover:-translate-y-0.5`}
-                >
-                  {plan.isCustom ? 'Get Custom Quote' : 'Get Started'}
-                </Link>
               </div>
             </div>
-          )})}
-        </div>
-
-        {/* Setup Fee Notice */}
-        <div
-          ref={setupFee.ref}
-          className={`max-w-3xl mx-auto mb-16 p-6 bg-green-50 border-2 border-green-200 rounded-2xl transition-all duration-700 ${
-            setupFee.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-brand-green rounded-xl flex items-center justify-center flex-shrink-0">
-              <Check className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h4 className="text-lg font-bold text-slate-900 mb-2">All plans include a one-time setup fee of $400</h4>
-              <p className="text-slate-700">
-                This covers OE software setup, smart call routing configuration, custom AI integrations tailored to your business, and Google Calendar syncing.
-              </p>
-            </div>
           </div>
         </div>
+      </section>
 
-        {/* Features Included */}
+      {/* Features Included */}
+      <section className="py-20 bg-slate-50">
         <div
           ref={featuresSection.ref}
-          className="max-w-6xl mx-auto mb-20 relative"
+          className="max-w-7xl mx-auto px-6 lg:px-8"
         >
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-orange-50/50 rounded-3xl -z-10" />
-
-          <div className="text-center mb-12 pt-12">
-            <h3 className={`text-4xl md:text-5xl font-extrabold text-center mb-4 text-slate-900 transition-all duration-700 ${
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-8 h-px bg-brand-orange" />
+              <span className="text-sm font-semibold text-brand-orange uppercase tracking-wider">What's Included</span>
+              <div className="w-8 h-px bg-brand-orange" />
+            </div>
+            <h3 className={`text-3xl lg:text-4xl font-black text-slate-900 mb-4 transition-all duration-700 ${
               featuresSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               Everything Included
             </h3>
-            <p className={`text-center text-slate-600 mb-12 text-xl max-w-2xl mx-auto transition-all duration-700 delay-100 ${
+            <p className={`text-slate-600 max-w-2xl mx-auto transition-all duration-700 delay-100 ${
               featuresSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               All plans come packed with these powerful features
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => {
               const delay = index * 100
               return (
-              <div
+              <motion.div
                 key={index}
-                className={`group relative flex flex-col items-start gap-4 p-7 bg-white rounded-2xl border-2 border-slate-200 hover:border-brand-green transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 ${
+                className={`group relative bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-brand-green transition-all duration-500 hover:shadow-xl hover:-translate-y-1 ${
                   featuresSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ transitionDelay: `${delay + 200}ms` }}
               >
-                {/* Gradient background on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-green-50/0 to-green-50/0 group-hover:from-green-50/50 group-hover:to-transparent rounded-2xl transition-all duration-500" />
+                {/* Feature Icon */}
+                <div className="mb-4">
+                  <SimpleIcon Icon={feature.icon} color={feature.color} />
+                </div>
 
-                <div className="relative flex items-center gap-4 w-full">
-                  <div className="w-14 h-14 bg-brand-green rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ boxShadow: '0 10px 15px -3px rgba(48, 179, 87, 0.3), 0 4px 6px -4px rgba(48, 179, 87, 0.3)' }}>
-                    {feature.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-lg text-slate-900 mb-0.5">{feature.title}</h4>
-                  </div>
-                </div>
-                <div className="relative">
-                  <p className="text-slate-600 leading-relaxed">{feature.description}</p>
-                </div>
+                <h4 className="font-bold text-lg text-slate-900 mb-2">{feature.title}</h4>
+                <p className="text-slate-600 text-sm">{feature.description}</p>
 
                 {/* Checkmark indicator */}
                 <div className="absolute top-4 right-4 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Check className="w-4 h-4 text-brand-green" />
                 </div>
-              </div>
+              </motion.div>
             )})}
           </div>
         </div>
+      </section>
 
-        {/* Add-Ons Section - Visual Separator */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent opacity-60" />
-        </div>
-
-        {/* Add-Ons Section */}
+      {/* Add-Ons Section */}
+      <section className="py-20 bg-white">
         <div
           ref={addonsSection.ref}
-          className="max-w-6xl mx-auto bg-gradient-to-br from-slate-50 to-white rounded-3xl p-8 border-2 border-slate-200 shadow-lg"
+          className="max-w-6xl mx-auto px-6 lg:px-8"
         >
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 rounded-full px-4 py-2 mb-4">
-              <Zap className="w-4 h-4 text-brand-orange" />
-              <span className="text-sm font-semibold text-brand-orange">UPGRADE OPTIONS</span>
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-8 h-px bg-brand-orange" />
+              <span className="text-sm font-semibold text-brand-orange uppercase tracking-wider">Upgrade Options</span>
+              <div className="w-8 h-px bg-brand-orange" />
             </div>
-            <h3 className={`text-3xl md:text-4xl font-bold text-slate-900 mb-2 transition-all duration-700 ${
+            <h3 className={`text-3xl lg:text-4xl font-bold text-slate-900 mb-4 transition-all duration-700 ${
               addonsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>Optional Add-Ons</h3>
-            <p className={`text-base text-slate-600 transition-all duration-700 delay-100 ${
+            <p className={`text-slate-600 transition-all duration-700 delay-100 ${
               addonsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>Enhance your experience with these premium features</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            <div className={`bg-white border-2 border-blue-200 rounded-2xl p-5 hover:border-blue-500 hover:shadow-xl transition-all duration-500 ${
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Website Chat Widget */}
+            <div className={`bg-white border-2 border-blue-200 rounded-3xl p-6 hover:border-blue-500 hover:shadow-xl transition-all duration-500 ${
               addonsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`} style={{ transitionDelay: '200ms' }}>
-              <div className="w-11 h-11 bg-blue-100 rounded-xl flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-md mb-4">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
               </div>
@@ -324,11 +378,12 @@ const PricingPage = () => {
               <p className="text-slate-600 text-sm">AI-powered chat support directly embedded on your website</p>
             </div>
 
-            <div className={`bg-white border-2 border-orange-200 rounded-2xl p-5 hover:border-brand-orange hover:shadow-xl transition-all duration-500 ${
+            {/* Website Redesign */}
+            <div className={`bg-white border-2 border-orange-200 rounded-3xl p-6 hover:border-brand-orange hover:shadow-xl transition-all duration-500 ${
               addonsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`} style={{ transitionDelay: '300ms' }}>
-              <div className="w-11 h-11 bg-orange-100 rounded-xl flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center shadow-md mb-4">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                 </svg>
               </div>
@@ -340,11 +395,12 @@ const PricingPage = () => {
               <p className="text-slate-600 text-sm">Professional website redesign tailored to your brand identity</p>
             </div>
 
-            <div className={`bg-white border-2 border-purple-200 rounded-2xl p-5 hover:border-purple-500 hover:shadow-xl transition-all duration-500 ${
+            {/* Stripe Terminal */}
+            <div className={`bg-white border-2 border-purple-200 rounded-3xl p-6 hover:border-purple-500 hover:shadow-xl transition-all duration-500 ${
               addonsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`} style={{ transitionDelay: '400ms' }}>
-              <div className="w-11 h-11 bg-purple-100 rounded-xl flex items-center justify-center mb-3">
-                <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center shadow-md mb-4">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                 </svg>
               </div>
@@ -363,12 +419,12 @@ const PricingPage = () => {
                 >
                   Stripe Terminal
                 </a>
-                {' '}card readers. Automatically sync appointments to invoices and process payments on-site.
+                {' '}card readers.
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

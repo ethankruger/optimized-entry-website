@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
-/* Tailwind Theme Extensions for Neobrutalism */
+/* 
+ * Optimized Entry - Brand Stylesheet
+ * A clean, intentional design system with character
+ */
+
+/* Fonts are loaded in index.html for better performance */
+
+/* Tailwind Theme Extensions */
 @theme {
   --color-main: var(--main);
   --color-overlay: var(--overlay);
@@ -15,7 +22,6 @@
   --color-secondary-black: #212121;
 
   --radius-base: 5px;
-
   --shadow-shadow: var(--shadow);
 
   --translate-box-shadow-x: 4px;
@@ -27,503 +33,411 @@
   --font-weight-heading: 700;
 }
 
-/* Neobrutalism CSS Variables */
+/* CSS Variables */
 :root {
+  /* Brand colors - bold, confident */
+  --green: #30b357;
+  --green-dark: #279447;
+  --orange: #f27a20;
+  --orange-dark: #d96a15;
+  
+  /* Neutrals - warm undertone */
+  --slate-50: #fafaf9;
+  --slate-100: #f5f5f4;
+  --slate-200: #e7e5e4;
+  --slate-300: #d6d3d1;
+  --slate-400: #a8a29e;
+  --slate-500: #78716c;
+  --slate-600: #57534e;
+  --slate-700: #44403c;
+  --slate-800: #292524;
+  --slate-900: #1c1917;
+  
+  /* Legacy variables */
   --main: #30b357;
   --overlay: rgba(0, 0, 0, 0.8);
-  --bg: #dfe5f2;
+  --bg: #fafaf9;
   --bw: #fff;
   --blank: #000;
-  --border: #000;
-  --text: #000;
-  --mtext: #000;
-  --ring: #000;
+  --border: #e7e5e4;
+  --text: #1c1917;
+  --mtext: #1c1917;
+  --ring: #1c1917;
   --ring-offset: #fff;
-  --border-radius: 5px;
-  --box-shadow-x: 4px;
-  --box-shadow-y: 4px;
-  --reverse-box-shadow-x: -4px;
-  --reverse-box-shadow-y: -4px;
-  --base-font-weight: 500;
-  --heading-font-weight: 700;
-  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.dark {
-  --bg: #272933;
-  --bw: #212121;
-  --blank: #fff;
-  --border: #000;
-  --text: #e6e6e6;
-  --mtext: #000;
-  --ring: #fff;
-  --ring-offset: #000;
-  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
-}
-
-/* Base */
+/* Base styles */
 @layer base {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply text-slate-900 bg-slate-50;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    color: var(--slate-900);
+    background-color: var(--slate-50);
     overflow-x: hidden;
+    line-height: 1.6;
   }
 
-  /* Smooth scroll with momentum on iOS */
-  * {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Subtle selection color aligned with brand */
+  /* Distinctive selection */
   ::selection {
-    background: rgba(48, 179, 87, 0.18);
-    color: #0f172a;
+    background: var(--green);
+    color: white;
   }
 
-  /* Gentle page fade-in on navigation (safe for reduced-motion) */
-  @keyframes oe-page-in {
-    from {
-      opacity: 0;
-      transform: translateY(6px)
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0)
-    }
+  /* Headings use serif for contrast */
+  h1, h2, h3 {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 
-  body {
-    animation: oe-page-in .24s ease-out
+  /* Body text */
+  p {
+    color: var(--slate-600);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    body {
-      animation: none
-    }
+  /* Clean focus states */
+  *:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
   }
 
-  /* Staggered fade-in animations for sections */
-  @keyframes oe-fade-slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px)
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0)
-    }
+  /* Smooth transitions everywhere */
+  * {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Gentle scale-in for cards */
-  @keyframes oe-scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.95)
-    }
-
-    to {
-      opacity: 1;
-      transform: scale(1)
-    }
-  }
-
-  /* Subtle glow pulse for hero elements */
-  @keyframes oe-glow-pulse {
-
-    0%,
-    100% {
-      opacity: 0.3;
-      transform: scale(1)
-    }
-
-    50% {
-      opacity: 0.5;
-      transform: scale(1.05)
-    }
-  }
-
-  /* Gentle page fade-in on navigation (safe for reduced-motion) */
-  @keyframes oe-page-in {
-    from {
-      opacity: 0;
-      transform: translateY(6px)
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0)
-    }
-  }
-
-  body {
-    animation: oe-page-in .24s ease-out
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    body {
-      animation: none
-    }
-  }
-
-  /* Staggered fade-in animations for sections */
-  @keyframes oe-fade-slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px)
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0)
-    }
-  }
-
-  /* Gentle scale-in for cards */
-  @keyframes oe-scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.95)
-    }
-
-    to {
-      opacity: 1;
-      transform: scale(1)
-    }
-  }
-
-  /* Subtle glow pulse for hero elements */
-  @keyframes oe-glow-pulse {
-
-    0%,
-    100% {
-      opacity: 0.3;
-      transform: scale(1)
-    }
-
-    50% {
-      opacity: 0.5;
-      transform: scale(1.05)
-    }
+  /* But not on animations */
+  *[class*="animate-"] {
+    transition: none;
   }
 }
 
 /* Utilities */
 @layer utilities {
-  .bg-hero {
-    @apply relative overflow-hidden;
-    background:
-      linear-gradient(135deg, rgba(48, 179, 87, 0.03) 0%, rgba(242, 122, 32, 0.03) 100%),
-      radial-gradient(1400px 500px at 20% 10%, rgba(48, 179, 87, 0.15), transparent 60%),
-      radial-gradient(1000px 500px at 80% 30%, rgba(242, 122, 32, 0.12), transparent 60%),
-      radial-gradient(800px 400px at 50% 100%, rgba(59, 130, 246, 0.08), transparent 70%);
-  }
-
-  /* Animated gradient background */
-  .bg-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 30% 50%, rgba(48, 179, 87, 0.08), transparent 50%),
-      radial-gradient(circle at 70% 50%, rgba(242, 122, 32, 0.08), transparent 50%);
-    animation: oe-gradient-shift 8s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes oe-gradient-shift {
-
-    0%,
-    100% {
-      opacity: 0.5;
-      transform: translateY(0) scale(1);
-    }
-
-    50% {
-      opacity: 1;
-      transform: translateY(-10px) scale(1.05);
-    }
-  }
-
-  /* brand helpers */
-  .text-brand-orange {
-    color: #f27a20;
-  }
-
+  /* Brand colors */
   .text-brand-green {
-    color: #30b357;
+    color: var(--green);
+  }
+
+  .text-brand-orange {
+    color: var(--orange);
   }
 
   .bg-brand-green {
-    background-color: #30b357;
+    background-color: var(--green);
   }
 
   .bg-brand-orange {
-    background-color: #f27a20;
+    background-color: var(--orange);
   }
 
+  /* Gradient */
   .bg-gradient-brand {
-    background: linear-gradient(135deg, #30b357 0%, #2aa74f 50%, #f27a20 100%);
-  }
-
-  .bg-gradient-orange {
-    background: linear-gradient(135deg, #f27a20 0%, #ff8c42 100%);
+    background: linear-gradient(135deg, var(--green) 0%, var(--orange) 100%);
   }
 
   .text-gradient-brand {
-    background: linear-gradient(135deg, #30b357 0%, #f27a20 100%);
+    background: linear-gradient(135deg, var(--green) 0%, var(--orange) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Helpful tiny utility for tasteful hover lift */
+  /* Mono text for labels */
+  .font-mono {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  /* Serif accent (for special headings) */
+  .font-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+  }
+
+  /* Hover lift - subtle, intentional */
   .hover-lift {
-    @apply transition-transform duration-200 hover:-translate-y-0.5
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Animation utilities */
-  .animate-fade-slide-up {
-    animation: oe-fade-slide-up 0.6s ease-out forwards;
+  .hover-lift:hover {
+    transform: translateY(-2px);
   }
 
-  .animate-scale-in {
-    animation: oe-scale-in 0.5s ease-out forwards;
+  /* Simple fade in */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
-  .animate-glow-pulse {
-    animation: oe-glow-pulse 4s ease-in-out infinite;
-  }
-
-  /* Staggered delays for sequential animations */
-  .delay-100 {
-    animation-delay: 0.1s;
-    opacity: 0;
-  }
-
-  .delay-200 {
-    animation-delay: 0.2s;
-    opacity: 0;
-  }
-
-  .delay-300 {
-    animation-delay: 0.3s;
-    opacity: 0;
-  }
-
-  .delay-400 {
-    animation-delay: 0.4s;
-    opacity: 0;
-  }
-
-  .delay-500 {
-    animation-delay: 0.5s;
-    opacity: 0;
-  }
-
-  .delay-600 {
-    animation-delay: 0.6s;
-    opacity: 0;
-  }
-
-  /* Decorative accent bars */
-  .accent-bar {
-    position: relative;
-    padding-left: 1.5rem;
-  }
-
-  .accent-bar::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, #30b357 0%, #f27a20 100%);
-    border-radius: 2px;
-  }
-
-  /* Floating decorative dots pattern */
-  .dots-pattern {
-    background-image: radial-gradient(circle, rgba(48, 179, 87, 0.15) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  /* Premium glow effect for important elements */
-  .glow-green {
-    box-shadow: 0 0 30px rgba(48, 179, 87, 0.3), 0 0 60px rgba(48, 179, 87, 0.15);
-  }
-
-  .glow-orange {
-    box-shadow: 0 0 30px rgba(242, 122, 32, 0.3), 0 0 60px rgba(242, 122, 32, 0.15);
-  }
-
-  /* Shimmer effect for premium feel */
-  @keyframes oe-shimmer {
-    0% {
-      background-position: -1000px 0;
+  @keyframes fade-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
     }
-
-    100% {
-      background-position: 1000px 0;
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
     }
   }
 
-  .shimmer {
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    background-size: 1000px 100%;
-    animation: oe-shimmer 3s infinite;
+  @keyframes slide-in-right {
+    from { 
+      opacity: 0; 
+      transform: translateX(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
   }
 
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Stagger delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+
+  /* Respect motion preferences */
   @media (prefers-reduced-motion: reduce) {
-
-    .animate-fade-slide-up,
-    .animate-scale-in,
-    .animate-glow-pulse,
-    .shimmer {
-      animation: none !important;
-      opacity: 1 !important;
+    .animate-fade-in,
+    .animate-fade-up,
+    .animate-slide-in-right {
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 }
 
 /* Components */
 @layer components {
+  /* Primary button - clean, confident */
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-xl px-6 py-3.5 font-bold text-white transition-all duration-300 active:scale-95 shadow-lg shadow-green-500/30 hover:-translate-y-1 hover:shadow-xl hover:shadow-green-500/40 focus-visible:-translate-y-1 active:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-400/30 relative overflow-hidden;
-    background: linear-gradient(135deg, #30b357 0%, #2aa74f 100%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: white;
+    background-color: var(--green);
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  .btn-primary:hover {
+    background-color: var(--green-dark);
+    transform: translateY(-1px);
   }
 
-  .btn-primary:hover::before {
-    opacity: 1;
+  .btn-primary:active {
+    transform: translateY(0);
   }
 
+  /* Secondary button */
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-xl px-6 py-3.5 font-bold transition-all duration-300 active:scale-95 bg-white text-slate-900 border-2 border-slate-200 hover:bg-gradient-to-br hover:from-slate-50 hover:to-white hover:border-slate-300 hover:-translate-y-1 focus-visible:-translate-y-1 active:-translate-y-0.5 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-300;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--slate-900);
+    background-color: white;
+    border: 2px solid var(--slate-200);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .chip {
-    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium border bg-white/70 backdrop-blur transition-all duration-200 hover:bg-white hover:shadow-md
+  .btn-secondary:hover {
+    border-color: var(--slate-300);
+    background-color: var(--slate-50);
+    transform: translateY(-1px);
   }
 
-  /* Tasteful card elevation with hover lift */
+  /* Card - clean, minimal shadow */
   .card {
-    @apply rounded-2xl p-6 bg-white/90 backdrop-blur-xl border border-white/70 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-white/90 active:-translate-y-0.5;
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid var(--slate-200);
+    padding: 1.5rem;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card:hover {
-    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 40px rgba(48, 179, 87, 0.1);
+    border-color: var(--slate-300);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   }
 
-  /* Re-introduce the glass panel used on feature tiles */
+  /* Glass effect - subtle, not overdone */
   .glass {
-    @apply bg-white/80 backdrop-blur-xl border border-white/70 shadow-sm transition-all duration-300 hover:bg-white/90 hover:shadow-lg hover:border-green-200/50;
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
-  .glass:hover {
-    box-shadow: 0 8px 30px -5px rgba(48, 179, 87, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  /* Chip/tag */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--slate-600);
+    background: var(--slate-100);
+    border-radius: 9999px;
+    transition: all 200ms;
   }
 
+  .chip:hover {
+    background: var(--slate-200);
+  }
+
+  /* Section container */
+  .section {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Title sizes */
   .title-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .title-lg {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.1;
     letter-spacing: -0.02em;
   }
 
+  /* Subtitle */
   .subtitle {
-    @apply mt-3 text-lg md:text-xl text-slate-700;
-    line-height: 1.6;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--slate-600);
   }
 
-  .section {
-    @apply max-w-6xl mx-auto px-4
+  @media (min-width: 768px) {
+    .subtitle {
+      font-size: 1.25rem;
+    }
   }
 
-  /* Enhanced heading styles */
-  h1, h2, h3 {
-    letter-spacing: -0.01em;
+  /* Header styling */
+  header {
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Better font smoothing */
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* Subtle shadow for sticky header for better separation on scroll */
-  header.sticky {
-    @apply shadow-sm transition-shadow duration-300
-  }
-
-  /* Enhanced form inputs with focus transitions */
-  input[type="text"], input[type="email"], input[type="tel"], textarea {
-    @apply transition-all duration-200;
+  /* Form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+    background: white;
+    border: 2px solid var(--slate-200);
+    border-radius: 0.75rem;
+    transition: all 200ms;
+    width: 100%;
   }
 
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="tel"]:focus,
   textarea:focus {
-    @apply scale-[1.01] shadow-lg;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(48, 179, 87, 0.1);
   }
 
-  /* Checkbox labels with hover effect */
-  label:has(input[type="checkbox"]) {
-    @apply transition-all duration-200 cursor-pointer;
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--slate-400);
   }
 
-  label:has(input[type="checkbox"]):hover {
-    @apply bg-slate-50 border-slate-300;
+  /* Links */
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
-  label:has(input[type="checkbox"]:checked) {
-    @apply bg-green-50 border-green-300;
+  a:hover {
+    color: var(--green);
   }
 
-  /* Link hover transitions */
-  a:not(.btn-primary):not(.btn-secondary) {
-    @apply transition-colors duration-200;
+  /* Scrollbar - minimal */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
   }
 
-  /* Image hover effects */
+  ::-webkit-scrollbar-track {
+    background: var(--slate-100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--slate-300);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--slate-400);
+  }
+
+  /* Images - no unexpected scaling */
   img {
-    @apply transition-transform duration-300;
+    transition: none;
   }
 
   img:hover {
-    @apply scale-105;
+    transform: none;
   }
+}
 
-  /* Number counter animation for stats */
-  @keyframes oe-count-up {
-    from {
-      opacity: 0;
-      transform: translateY(10px)
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0)
-    }
-  }
-
-  /* Smooth scrolling for anchor links */
-  html {
-    scroll-behavior: smooth;
-  }
+/* Custom utility for duration-400 */
+.duration-400 {
+  transition-duration: 400ms;
 }
